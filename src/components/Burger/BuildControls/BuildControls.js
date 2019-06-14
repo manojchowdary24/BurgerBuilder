@@ -21,6 +21,7 @@ const buildControls = (props) => (
                   val = {props.ingredients[ctrl.type]}
                   />))
         }
+        <button className = {classes.OrderButton} disabled = {!props.isReady}> Order Now </button>
      </div>
 )
 

@@ -18,8 +18,20 @@ class BurgerBuilder extends React.Component{
             cheese:0,
             meat:0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        isReady: false
     }
+
+    updateIsReadyToggler(ingredients) {
+        const sum = Object.keys(ingredients).map(igkey => {
+            return ingredients[igkey];
+        }).reduce((sum,el)=> (sum +el ) ,0);
+        console.log(sum);
+        this.setState({
+            isReady: sum > 0
+        });
+    }
+      
 
     addIngredientHandler =(type) => {
         const oldCount = this.state.ingredients[type];
@@ -32,6 +44,7 @@ class BurgerBuilder extends React.Component{
             totalPrice: updatedPrice,
             ingredients : updatedIngredients
         })
+        this.updateIsReadyToggler(updatedIngredients);
     }
 
     removeIngredientHandler = (type) => {
@@ -45,6 +58,7 @@ class BurgerBuilder extends React.Component{
             totalPrice: updatedPrice,
             ingredients : updatedIngredients
         }) 
+        this.updateIsReadyToggler(updatedIngredients);
     }
 
     render(){
@@ -56,6 +70,7 @@ class BurgerBuilder extends React.Component{
                 remove = {this.removeIngredientHandler}
                 ingredients = {this.state.ingredients}
                 currentPrice = {this.state.totalPrice}
+                isReady = {this.state.isReady}
                 />
             </Auxillary>
         )
