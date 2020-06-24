@@ -70,7 +70,13 @@ class BurgerBuilder extends React.Component {
   };
 
   removePurchaseModeHandler = () => {
+    console.log("clicked cancel button ");
     this.setState({ purchaseMode: false });
+  };
+
+  completedOrder = () => {
+    console.log("clicked continue button ");
+    alert("Your burger will be at your house in 10 hours");
   };
 
   render() {
@@ -80,7 +86,12 @@ class BurgerBuilder extends React.Component {
           purchaseMode={this.state.purchaseMode}
           removeModalClicked={this.removePurchaseModeHandler}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            removed={this.removePurchaseModeHandler}
+            continue={this.completedOrder}
+            totalPrice={this.state.totalPrice}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

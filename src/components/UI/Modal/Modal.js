@@ -12,7 +12,7 @@ const modal = props => (
     <div
       className={classes.Modal}
       style={{
-        transform: props.purchaseMode ? "translateY(0)" : "translateY(-100)",
+        transform: props.purchaseMode ? "translateY(0)" : "translateY(-100vh)",
         opacity: props.purchaseMode ? "1" : "0"
       }}
     >
